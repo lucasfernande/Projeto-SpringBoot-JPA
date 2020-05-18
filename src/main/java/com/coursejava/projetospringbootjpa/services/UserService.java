@@ -24,4 +24,9 @@ public class UserService  {
 		Optional<User> user = repo.findById(id);
 		return user.get();
 	}
+	
+	public User insert(User obj) {
+		repo.save(obj);
+		return obj;
+	}
 }
