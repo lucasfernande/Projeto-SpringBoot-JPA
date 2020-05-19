@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.coursejava.projetospringbootjpa.entities.User;
 import com.coursejava.projetospringbootjpa.repositories.UserRepository;
+import com.coursejava.projetospringbootjpa.services.exceptions.ResourceNotFoundException;
 
 @Service // registrando a classe como um componente do spring
 
@@ -22,7 +23,7 @@ public class UserService  {
 	
 	public User findById(Long id) {
 		Optional<User> user = repo.findById(id);
-		return user.get();
+		return user.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public User insert(User obj) {
